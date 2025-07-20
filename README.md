@@ -4,17 +4,6 @@
 
 A Gradio component that can be used to annotate images with bounding boxes.
 
-![Demo preview](images/demo.png)
-
-## Keyboard Shortcuts:
-- `C`: Create mode
-- `D`: Drag mode
-- `E`: Edit selected box (same as double-click a box)
-- `Delete`: Remove selected box
-- `Space`: Reset view (zoom/pan)
-- `Enter`: Confirm modal dialog
-- `Escape`: Cancel/close modal dialog
-
 ## Installation
 
 ```bash
@@ -101,6 +90,7 @@ with gr.Blocks() as demo:
             example_annotation,
             label_list=["Person", "Vehicle"],
             label_colors=[(0, 255, 0), (255, 0, 0)],
+            default_label = "BatVehicle",
         )
         button_get = gr.Button("Get bounding boxes")
         json_boxes = gr.JSON()
@@ -119,7 +109,7 @@ with gr.Blocks() as demo:
         button_crop.click(crop, annotator_crop, image_crop)
 
         gr.Examples(examples_crop, annotator_crop)
-    
+
     with gr.Accordion("Keyboard Shortcuts"):
         gr.Markdown("""
         - ``C``: Create mode
@@ -574,6 +564,19 @@ bool
 </td>
 <td align="left"><code>True</code></td>
 <td align="left">If True, the component will respond to keyboard events.</td>
+</tr>
+
+<tr>
+<td align="left"><code>default_label</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+str | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">The default label to use when creating new boxes.</td>
 </tr>
 </tbody></table>
 

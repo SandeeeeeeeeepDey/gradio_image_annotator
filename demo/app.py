@@ -75,6 +75,7 @@ with gr.Blocks() as demo:
             example_annotation,
             label_list=["Person", "Vehicle"],
             label_colors=[(0, 255, 0), (255, 0, 0)],
+            default_label = "BatVehicle",
         )
         button_get = gr.Button("Get bounding boxes")
         json_boxes = gr.JSON()

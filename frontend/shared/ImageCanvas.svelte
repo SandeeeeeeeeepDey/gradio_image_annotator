@@ -9,24 +9,25 @@
 		"data-testid"?: string;
 	}
 
-	export let src: HTMLImgAttributes["src"] = undefined;
-	export let interactive: boolean;
-	export let boxesAlpha: number;
-	export let labelList: string[];
-	export let labelColors: string[];
-	export let boxMinSize: number;
-	export let handleSize: number;
-	export let boxThickness: number;
-	export let height: number | string;
-	export let width: number | string;
-	export let boxSelectedThickness: number;
-	export let value: null | AnnotatedImageData;
-	export let disableEditBoxes: boolean;
-	export let singleBox: boolean;
-	export let showRemoveButton: boolean;
-	export let handlesCursor: boolean;
-	export let useDefaultLabel: boolean;
-	export let enableKeyboardShortcuts: boolean;
+export let src: HTMLImgAttributes["src"] = undefined;
+export let interactive: boolean;
+export let boxesAlpha: number;
+export let labelList: string[];
+export let labelColors: string[];
+export let boxMinSize: number;
+export let handleSize: number;
+export let boxThickness: number;
+export let height: number | string;
+export let width: number | string;
+export let boxSelectedThickness: number;
+export let value: null | AnnotatedImageData;
+export let disableEditBoxes: boolean;
+export let singleBox: boolean;
+export let showRemoveButton: boolean;
+export let handlesCursor: boolean;
+export let useDefaultLabel: boolean;
+export let enableKeyboardShortcuts: boolean;
+export let default_label: string;
 
 	let resolved_src: typeof src;
 
@@ -57,24 +58,27 @@
 
 </script>
 
-<Canvas
-	bind:value
-	on:change={() => dispatch("change")}
-	{interactive}
-	boxAlpha={boxesAlpha}
-	choices={labelList}
-	choicesColors={labelColors}
-	{height}
-	{width}
-	{boxMinSize}
-	{handleSize}
-	{boxThickness}
-	{boxSelectedThickness}
-	{disableEditBoxes}
-	{singleBox}
-	{showRemoveButton}
-	{handlesCursor}
-	{useDefaultLabel}
-	{enableKeyboardShortcuts}
-	imageUrl={resolved_src}
-/>
+<div class="image-canvas-container">
+    <Canvas
+        bind:value
+        on:change={() => dispatch("change")}
+        {interactive}
+        boxAlpha={boxesAlpha}
+        choices={labelList}
+        choicesColors={labelColors}
+        {height}
+        {width}
+        {boxMinSize}
+        {handleSize}
+        {boxThickness}
+        {boxSelectedThickness}
+        {disableEditBoxes}
+        {singleBox}
+        {showRemoveButton}
+        {handlesCursor}
+        {useDefaultLabel}
+		{enableKeyboardShortcuts}
+		{default_label}
+		imageUrl={resolved_src}
+    />
+    </div>

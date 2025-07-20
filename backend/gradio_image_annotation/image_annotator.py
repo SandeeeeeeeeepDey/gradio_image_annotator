@@ -89,7 +89,8 @@ class image_annotator(Component):
         show_remove_button: bool | None = None,
         handles_cursor: bool | None = True,
         use_default_label: bool | None = False,
-        enable_keyboard_shortcuts: bool = True, 
+        enable_keyboard_shortcuts: bool = True,
+        default_label: str | None = None, 
     ):
         """
         Parameters:
@@ -125,6 +126,7 @@ class image_annotator(Component):
             handles_cursor: If True, the cursor will change when hovering over box handles in drag mode. Can be CPU-intensive.
             use_default_label: If True, the first item in label_list will be used as the default label when creating boxes.
             enable_keyboard_shortcuts: If True, the component will respond to keyboard events.
+            default_label: The default label to use when creating new boxes.
         """
 
         valid_types = ["numpy", "pil", "filepath"]
@@ -161,6 +163,7 @@ class image_annotator(Component):
         self.handles_cursor = handles_cursor
         self.use_default_label = use_default_label
         self.enable_keyboard_shortcuts = enable_keyboard_shortcuts
+        self.default_label = default_label
 
         self.boxes_alpha = boxes_alpha
         self.box_min_size = box_min_size
@@ -304,6 +307,11 @@ class image_annotator(Component):
                     raise ValueError("Box must be a dict with the following "
                                      "keys: 'xmin', 'ymin', 'xmax', 'ymax', "
                                      f"['label', 'color']'. Got {box}")
+                if self.default_label is not None:
+                    box["label"] = self.default_label
+
+        if self.disable_edit_boxes:
+            self.interactive = False
 
         # Check and parse image
         image = value.setdefault("image", None)

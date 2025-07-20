@@ -28,6 +28,7 @@
 	export let handlesCursor: boolean = true;
 	export let useDefaultLabel: boolean = false;
 	export let enableKeyboardShortcuts: boolean = true;
+	export let default_label: string | null = null;
 
 	if (showRemoveButton === null) {
 		showRemoveButton = (disableEditBoxes);
@@ -136,6 +137,9 @@
 		value.boxes.forEach(box => {box.setSelected(false);});
 		if (index >= 0 && index < value.boxes.length){
 			value.boxes[index].setSelected(true);
+			value.selected_box = value.boxes[index];
+		} else {
+			value.selected_box = null;
 		}
 		draw();
 	}
@@ -401,7 +405,7 @@
 			canvasYmin,
 			canvasXmax,
 			canvasYmax,
-			"",
+			default_label || "",
 			x,
 			y,
 			x,

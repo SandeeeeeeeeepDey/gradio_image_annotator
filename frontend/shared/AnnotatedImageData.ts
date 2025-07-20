@@ -5,4 +5,5 @@ export default class AnnotatedImageData {
     image: FileData;
     boxes: Box[] = [];
     orientation: number = 0;
+    selected_box: Box | null = null;
 }
